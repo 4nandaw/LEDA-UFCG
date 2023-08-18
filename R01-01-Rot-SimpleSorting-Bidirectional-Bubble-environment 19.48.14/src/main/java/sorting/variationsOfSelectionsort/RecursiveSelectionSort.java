@@ -1,6 +1,7 @@
 package sorting.variationsOfSelectionsort;
 
 import sorting.AbstractSorting;
+import util.Util;
 
 public class RecursiveSelectionSort<T extends Comparable<T>> extends
 		AbstractSorting<T> {
@@ -15,8 +16,25 @@ public class RecursiveSelectionSort<T extends Comparable<T>> extends
 	 */
 	@Override
 	public void sort(T[] array, int leftIndex, int rightIndex) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not Implemented yet!");
+		if (!(leftIndex >= rightIndex || leftIndex < 0 || rightIndex > array.length || array.length == 0)) {
+			if (leftIndex < rightIndex) {
+				int min = smallestElement(array, leftIndex, rightIndex);
+				Util.swap(array, leftIndex, min);
+
+				sort(array, leftIndex + 1, rightIndex);
+			}
+		}
 	}
 
+	public int smallestElement(T[] array, int leftIndex, int rightIndex) {
+		int smallest = leftIndex;
+
+		if (leftIndex < rightIndex) {
+			int min = smallestElement(array, leftIndex + 1, rightIndex);
+			if (array[min].compareTo(array[smallest]) < 0) {
+				smallest = min;
+			}
+		}
+		return smallest;
+	}
 }
