@@ -1,6 +1,7 @@
 package sorting.simpleSorting;
 
 import sorting.AbstractSorting;
+import util.Util;
 
 /**
  * As the insertion sort algorithm iterates over the array, it makes the
@@ -18,7 +19,7 @@ public class InsertionSort<T extends Comparable<T>> extends AbstractSorting<T> {
 				int j = i - 1;
 
 				while (j >= leftIndex && key.compareTo(array[j]) < 0) {
-					array[j + 1] = array[j];
+					Util.swap(array, j + 1, j);
 					j--;
 				}
 				
