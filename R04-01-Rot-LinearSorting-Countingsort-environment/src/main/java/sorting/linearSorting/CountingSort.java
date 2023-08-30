@@ -42,11 +42,8 @@ public class CountingSort extends AbstractSorting<Integer> {
 			Integer[] result = new Integer[rightIndex - leftIndex + 1];
 
 			for (int i = rightIndex; i >= leftIndex; i--) {
-				int elem = array[i];
-
-				frequency[elem]--;
-
-				result[frequency[elem]] = elem;
+				frequency[array[i]]--;
+				result[frequency[array[i]]] = array[i];
 			}
 
 			for (int i = leftIndex; i <= rightIndex; i++) {
