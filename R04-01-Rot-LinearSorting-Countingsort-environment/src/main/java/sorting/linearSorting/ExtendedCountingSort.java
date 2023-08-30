@@ -28,11 +28,6 @@ public class ExtendedCountingSort extends AbstractSorting<Integer> {
 			for (int i = 0; i < frequency.length; i++) {
 				frequency[i] = 0;
 			}
-
-
-
-
-
 			
 			for (int i = leftIndex; i <= rightIndex; i++) {
 				frequency[array[i] - lower]++;
@@ -51,16 +46,7 @@ public class ExtendedCountingSort extends AbstractSorting<Integer> {
 			for (int i = rightIndex; i >= leftIndex; i--) {
 				frequency[result[i] - lower]--;
 				array[frequency[result[i] - lower] + leftIndex] = result[i];
-				
-				// result[frequency[array[i] - 1] - 1] = array[i];
-				// frequency[array[i] - 1]--;
 			}
-			
 		}
 	}
-
 }
-
-// Descobre o min e o max
-// max - min = tamanho do array de contagem
-// para alocar no array => elemento - min = posição
