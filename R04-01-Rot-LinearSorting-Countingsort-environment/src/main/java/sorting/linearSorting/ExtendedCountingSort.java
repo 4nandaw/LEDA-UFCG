@@ -25,6 +25,15 @@ public class ExtendedCountingSort extends AbstractSorting<Integer> {
 
 			Integer[] frequency = new Integer[higher + 1];
 
+			for (int i = 0; i < frequency.length; i++) {
+				frequency[i] = 0;
+			}
+
+
+
+
+
+			
 			for (int i = leftIndex; i <= rightIndex; i++) {
 				frequency[array[i] - lower]++;
 			}
