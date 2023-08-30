@@ -12,8 +12,46 @@ public class ExtendedCountingSort extends AbstractSorting<Integer> {
 
 	@Override
 	public void sort(Integer[] array, int leftIndex, int rightIndex) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (!(leftIndex >= rightIndex || rightIndex >= array.length || array.length == 0)) {
+			int lower = array[leftIndex];
+			int higher = array[leftIndex];
+			for (int i = leftIndex; i <= rightIndex; i++) {
+				if (array[i] > higher) {
+					higher = array[i];
+				} else if (array[i] < lower) {
+					lower = array[i];
+				}
+			}
+
+			Integer[] frequency = new Integer[higher + 1];
+
+			for (int i = leftIndex; i <= rightIndex; i++) {
+				frequency[array[i] - lower]++;
+			}
+
+			for (int i = 1; i < frequency.length; i++) {
+				frequency[i] = frequency[i] + frequency[i - 1];
+			}
+
+			Integer[] result = new Integer[array.length];
+
+			for (int i = 0; i < array.length; i++) {
+				result[i] = array[i];
+			}
+
+			for (int i = rightIndex; i >= leftIndex; i--) {
+				frequency[result[i] - lower]--;
+				array[frequency[result[i] - lower] + leftIndex] = result[i];
+				
+				// result[frequency[array[i] - 1] - 1] = array[i];
+				// frequency[array[i] - 1]--;
+			}
+			
+		}
 	}
 
 }
+
+// Descobre o min e o max
+// max - min = tamanho do array de contagem
+// para alocar no array => elemento - min = posição
