@@ -42,7 +42,43 @@ public class QuickSelect<T extends Comparable<T>> {
 	 *
 	 */
 	public T quickSelect(T[] array, int k) {
-		// TODO Implement your code here
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (!(leftIndex > rightIndex || leftIndex < 0 || rightIndex > array.length || array.length == 0)) {
+			return select(array, k, 0, array.length - 1);
+		}
+		return null;
+	}
+
+	public int partition(T[] array, int leftIndex, int rightIndex) {
+		if (!(leftIndex > rightIndex || leftIndex < 0 || rightIndex > array.length || array.length == 0)) {
+			T pivot = array[leftIndex];
+			int i = leftIndex;
+
+			for (int j = leftIndex + 1; j < rightIndex; j++) {
+				if (array[j].compareTo(array[pivot]) <= 0) {
+					i++;
+					Util.swap(array, i, j);
+				}
+			}
+
+			Util.swap(array, leftIndex, i);
+
+			return i;
+		}
+	}
+
+	public T select(T[] array, int k, int leftIndex, int rightIndex) {
+		int pivot = partition(array, leftIndex, rightIndex);
+
+		T result = null;
+
+		if (pivot == k -1) {
+			result = array[pivot];
+		} else if (pivot < k - 1) {
+			result = select(array, k, pivot + 1, rightIndex);
+		} else {
+			result = select(array, k, leftIndex, pivot - 1);
+		}
+
+		return result;
 	}
 }
