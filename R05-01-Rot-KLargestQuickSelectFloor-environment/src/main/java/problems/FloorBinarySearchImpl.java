@@ -37,8 +37,8 @@ public class FloorBinarySearchImpl implements Floor {
 		int indice = leftIndex;
 		
 		for (int j = leftIndex + 1; j <= array.length; j++) {
-			if (array[j].compareTo(array[indice]) <= 0) {
-				i++;
+			if (array[j].compareTo(array[pivot]) <= 0) {
+				indice++;
 				Util.swap(array, indice, j);
 			}
 		}
