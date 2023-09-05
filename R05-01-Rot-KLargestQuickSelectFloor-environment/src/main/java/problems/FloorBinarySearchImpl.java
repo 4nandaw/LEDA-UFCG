@@ -39,12 +39,12 @@ public class FloorBinarySearchImpl implements Floor {
 		for (int j = leftIndex + 1; j <= array.length; j++) {
 			if (array[j].compareTo(array[indice]) <= 0) {
 				i++;
-				Util.swap(array, i, j);
+				Util.swap(array, indice, j);
 			}
 		}
-		Util.swap(array, leftIndex, i);
+		Util.swap(array, leftIndex, indice);
 
-		return i;
+		return indice;
 	}
 	
 	public void quickSort(Integer[] array, int leftIndex, int rightIndex) {
