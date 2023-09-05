@@ -1,5 +1,8 @@
 package orderStatistic;
 
+import util.Util;
+
+
 /**
  * O quickselect eh um algoritmo baseado no quicksort para
  * descobrir/selectionar, em tempo linear, a k-esima estatistica de ordem
