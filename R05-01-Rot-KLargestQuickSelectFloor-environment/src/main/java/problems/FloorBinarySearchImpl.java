@@ -1,5 +1,7 @@
 package problems;
 
+import util.Util;
+
 public class FloorBinarySearchImpl implements Floor {
 
 	@Override
