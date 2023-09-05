@@ -55,8 +55,8 @@ public class QuickSelect<T extends Comparable<T>> {
 		T pivot = array[leftIndex];
 		int i = leftIndex;
 
-		for (int j = leftIndex + 1; j < rightIndex; j++) {
-			if (array[j].compareTo(array[pivot]) <= 0) {
+		for (int j = leftIndex + 1; j <= rightIndex; j++) {
+			if (array[j].compareTo(pivot) <= 0) {
 				i++;
 				Util.swap(array, i, j);
 			}
