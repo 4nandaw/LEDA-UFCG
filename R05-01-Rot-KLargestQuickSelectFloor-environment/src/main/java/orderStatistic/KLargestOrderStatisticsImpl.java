@@ -30,14 +30,20 @@ public class KLargestOrderStatisticsImpl<T extends Comparable<T>> implements KLa
 	@Override
 	public T[] getKLargest(T[] array, int k) {
 		if (!(k > array.length || k < 0 || array.length == 0)) {
-			T[] result = new T[k];
+			T[] result = (T[]) new Comparable[k];
+			
+			orderStatistics(array, array.length - k);
+
+			int indice = 0;
+			for (int i = array.length - k; i < array.length; i++) {
+				result[indice] = array[i];
+				indice++;
+			}
+			return result;
 
 		} else {
-			T[] result;
-			return result;
+			return (T[]) new Comparable[0];
 		}
-		
-		//este metodo deve obrigatoriamente usar o orderStatistics abaixo.
 	}
 
 	/**
@@ -57,7 +63,7 @@ public class KLargestOrderStatisticsImpl<T extends Comparable<T>> implements KLa
 			for (int i = 0; i < k; i++) {
 				int smallest = i;
 				for (int j = i + 1; j < array.length; j++) {
-					if (array[smallest].compareTo(array[j]) > 0) {
+					if (array[j].compareTo(array[smallest]) < 0) {
 						smallest = j;
 					}
 				}
