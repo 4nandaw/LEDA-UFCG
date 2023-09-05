@@ -45,7 +45,7 @@ public class QuickSelect<T extends Comparable<T>> {
 	 *
 	 */
 	public T quickSelect(T[] array, int k) {
-		if (!(leftIndex > rightIndex || leftIndex < 0 || rightIndex > array.length || array.length == 0)) {
+		if (!(array.length == 0 || k <= 0 || k > array.length)) {
 			return select(array, k, 0, array.length - 1);
 		}
 		return null;
