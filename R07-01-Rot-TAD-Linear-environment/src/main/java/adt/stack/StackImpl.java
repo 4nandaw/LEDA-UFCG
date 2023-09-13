@@ -13,32 +13,48 @@ public class StackImpl<T> implements Stack<T> {
 
 	@Override
 	public T top() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T topo = null;
+		if (!isEmpty()) {
+			topo = this.array[this.top];
+		}
+		return topo;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (this.top == - 1) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override
 	public boolean isFull() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (array.length - 1 == this.top) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override
 	public void push(T element) throws StackOverflowException {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (isFull()) {
+			throw new StackOverflowException();
+		}
+		if (element != null) {
+			this.top++;
+			this.array[this.top] = element;
+		}
 	}
 
 	@Override
 	public T pop() throws StackUnderflowException {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (isEmpty()) {
+			throw new StackUnderflowException();
+		}
+		T elem = this.array[this.top];
+		this.top--;
+		return elem;
 	}
 
 }
