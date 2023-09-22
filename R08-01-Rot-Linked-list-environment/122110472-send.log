@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-09-15T10:18:02.161-0300</date>
+  <logger>ANANDA VILAR VIDAL</logger>
+  <level>FINE</level>
+  <message>File 122110472-ANANDA VILAR VIDAL.zip was received. It was sent by ANANDA VILAR VIDAL from IP 192.168.51.202 at 15-09-2023 10*18*02</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-09-15T11:32:48.520-0300</date>
+  <logger>ANANDA VILAR VIDAL</logger>
+  <level>FINE</level>
+  <message>File 122110472-ANANDA VILAR VIDAL.zip was received. It was sent by ANANDA VILAR VIDAL from IP 192.168.51.202 at 15-09-2023 11*32*48</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-09-15T20:28:05.971-0300</date>
+  <logger>ANANDA VILAR VIDAL</logger>
+  <level>FINE</level>
+  <message>File 122110472-ANANDA VILAR VIDAL.zip was received. It was sent by ANANDA VILAR VIDAL from IP 172.20.10.2 at 15-09-2023 20*28*05</message>
+</record>
