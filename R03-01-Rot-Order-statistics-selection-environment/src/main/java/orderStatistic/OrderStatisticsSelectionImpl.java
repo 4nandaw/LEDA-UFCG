@@ -68,4 +68,6 @@ public class OrderStatisticsSelectionImpl<T extends Comparable<T>> implements Or
 
 		return smallest;
 	}
+
+	// OBS: NÃO PASSOU EM TODOS OS TESTES (NOTA: 5.6)
 }
