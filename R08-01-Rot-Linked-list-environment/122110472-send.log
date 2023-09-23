@@ -27,3 +27,13 @@
   <level>FINE</level>
   <message>File 122110472-ANANDA VILAR VIDAL.zip was received. It was sent by ANANDA VILAR VIDAL from IP 172.20.10.2 at 15-09-2023 20*28*05</message>
 </record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-09-23T15:31:53.585-0300</date>
+  <logger>ANANDA VILAR VIDAL</logger>
+  <level>FINE</level>
+  <message>File 122110472-ANANDA VILAR VIDAL.zip was received. It was sent by ANANDA VILAR VIDAL from IP 10.0.0.120 at 23-09-2023 15*31*53</message>
+</record>
