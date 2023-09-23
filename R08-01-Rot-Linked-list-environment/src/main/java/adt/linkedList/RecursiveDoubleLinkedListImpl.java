@@ -14,7 +14,10 @@ public class RecursiveDoubleLinkedListImpl<T> extends
 		if (element != null) {
 			if (isEmpty()) {
 				setData(element);
-				next = new RecursiveDoubleLinkedListImpl<T>();
+				setNext(new RecursiveDoubleLinkedListImpl<T>());
+				if (previous == null) {
+					setPrevious(new RecursiveDoubleLinkedListImpl<T>());
+				}
 			} else {
 				next.insert(element);
 			}
@@ -40,7 +43,7 @@ public class RecursiveDoubleLinkedListImpl<T> extends
 
 	@Override
 	public void remove(T element) {
-		if (element != null && !isEmpty()) {
+		if (!isEmpty() && element != null) {
 			if (getData().equals(element)) {
 				if (previous.isEmpty()) {
 					removeFirst();
