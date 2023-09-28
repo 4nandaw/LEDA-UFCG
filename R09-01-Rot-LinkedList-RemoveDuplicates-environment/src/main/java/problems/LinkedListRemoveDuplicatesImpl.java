@@ -11,7 +11,20 @@ public class LinkedListRemoveDuplicatesImpl<T> implements LinkedListRemoveDuplic
      *   nesta classe
      */
     public void removeDuplicates(SingleLinkedListNode<T> node){
-          
+        SingleLinkedListNode<T> head = node;
+        SingleLinkedListNode<T> aux = node;
+
+        while (!head.isNil()) {
+            aux = head;
+            while (!aux.isNil() && aux.getNext().isNil()) {
+                if (head.getData().equals(aux.next.getData())) {
+                    aux.setNext(aux.getNext().getNext());
+                } else {
+                    aux = aux.getNext();
+                }
+            }
+            aux = head.getNext();
+        }
     }
 }
 
