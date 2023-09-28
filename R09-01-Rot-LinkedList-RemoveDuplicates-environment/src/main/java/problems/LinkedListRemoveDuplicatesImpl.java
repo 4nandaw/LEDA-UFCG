@@ -11,8 +11,7 @@ public class LinkedListRemoveDuplicatesImpl<T> implements LinkedListRemoveDuplic
      *   nesta classe
      */
     public void removeDuplicates(SingleLinkedListNode<T> node){
-        //TODO implement your code here
-        throw new UnsupportedOperationException("Not implemented yet!");    
+          
     }
 }
 
