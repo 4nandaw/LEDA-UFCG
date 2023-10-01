@@ -1,8 +1,12 @@
 package adt.hashtable.closed;
 
+import java.util.LinkedList;
+
 import adt.hashtable.hashfunction.HashFunction;
+import adt.hashtable.hashfunction.HashFunctionClosedAddress;
 import adt.hashtable.hashfunction.HashFunctionClosedAddressMethod;
 import adt.hashtable.hashfunction.HashFunctionFactory;
+import util.Util;
 
 public class HashtableClosedAddressImpl<T> extends
 		AbstractHashtableClosedAddress<T> {
@@ -53,32 +57,62 @@ public class HashtableClosedAddressImpl<T> extends
 	 * prime.
 	 */
 	int getPrimeAbove(int number) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		while (!Util.isPrime(number)) {
+			number++;
+		}
+		return number;
 	}
 
 	@Override
 	public void insert(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (element != null && search(element) == null) {
+			int hashIndex = ((HashFunctionClosedAddress<T>) hashFunction).hash(element);
+			if (this.table[hashIndex] == null) {
+				this.table[hashIndex] = new LinkedList<>();
+			} else {
+				this.COLLISIONS++;
+			}
+			((LinkedList<T>) this.table[hashIndex]).add(element);
+			this.elements++;
+		}
 	}
 
 	@Override
 	public void remove(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (!isEmpty() && element != null) {
+			int index = indexOf(element);
+			if (index != -1) {
+				((LinkedList<T>) this.table[index]).remove(element);
+				this.elements--;
+			}
+		}
 	}
 
 	@Override
 	public T search(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T result = null;
+		if (!isEmpty() && element != null) {
+			int index = indexOf(element);
+			if (index != -1) {
+				int indexList = ((LinkedList<T>) this.table[index]).indexOf(element);
+				result = ((LinkedList<T>) this.table[index]).get(indexList);
+			}
+		}
+		return result;
 	}
 
 	@Override
 	public int indexOf(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		int index = -1;
+		if (!isEmpty() && element != null) {
+			int indexHash = ((HashFunctionClosedAddress<T>) hashFunction).hash(element);
+			LinkedList<T> position = (LinkedList<T>) this.table[indexHash];
+
+			if (position != null && position.contains(element)) {
+				index = indexHash;
+			}
+		}
+		return index;
 	}
 
 }
