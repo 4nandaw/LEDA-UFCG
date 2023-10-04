@@ -48,7 +48,6 @@ public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends
 		if (index >= 0) {
 			search = (T) this.table[index];
 		}
-
 		return search;
 	}
 
@@ -65,7 +64,6 @@ public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends
 			if (this.table[index] != null && this.table[index].equals(element)) {
 				i = index;
 			}
-
 		}
 		return i;
 	}
