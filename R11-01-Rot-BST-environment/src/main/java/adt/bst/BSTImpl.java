@@ -56,7 +56,15 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	}
 
 	private void insert(T element, BSTNode<T> node) {
-		//
+		if (node.isEmpty()) {
+			node.setData(element);
+			//
+			//
+			//
+			//
+			//
+			//
+		}
 	}
 
 	@Override
@@ -147,5 +155,4 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		}
 		return result;
 	}
-
 }
