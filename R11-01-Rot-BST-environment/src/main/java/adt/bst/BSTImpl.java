@@ -162,26 +162,39 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	private void remove(BSTNode<T> node) {
 		if (!node.isEmpty() && node != null) {
+			//Primeiro caso
 			if (node.isLeaf()) {
-				node.setData(null); // Ou node = new BSTNode<T>(); ?
+				node.setData(null);
+			//Segundo caso
 			} else if (hasOneChild(node)) {
-				if (node.getParent().getData().compareTo(node.getData()) > 0) {
-					if (!node.getLeft().isEmpty()) {
-						node.getParent().setLeft(node.getLeft());
-						node.getLeft().setParent(node.getParent());
+				if (node.getParent() != null) {
+					if (node.getParent().getData().compareTo(node.getData()) > 0) {
+						if (!node.getLeft().isEmpty()) {
+							node.getParent().setLeft(node.getLeft());
+							node.getLeft().setParent(node.getParent());
+						} else {
+							node.getParent().setLeft(node.getRight());
+							node.getRight().setParent(node.getParent());
+						}
 					} else {
-						node.getParent().setLeft(node.getRight());
-						node.getRight().setParent(node.getParent());
+						if (!node.getLeft().isEmpty()) {
+							node.getParent().setRight(node.getLeft());
+							node.getLeft().setParent(node.getParent());
+						} else {
+							node.getParent().setRight(node.getRight());
+							node.getRight().setParent(node.getParent());
+						}
 					}
 				} else {
-					if (!node.getLeft().isEmpty()) {
-						node.getParent().setRight(node.getLeft());
-						node.getLeft().setParent(node.getParent());
+					if (node.getLeft().isEmpty()) {
+						root = (BSTNode<T>) node.getRight();
+						root.setParent(null);
 					} else {
-						node.getParent().setLeft(node.getRight());
-						node.getRight().setParent(node.getParent());
+						root = (BSTNode<T>) node.getLeft();
+						root.setParent(null);
 					}
 				}
+			//Terceiro caso
 			} else {
 				BSTNode<T> sucessor = sucessor(node.getData());
 				node.setData(sucessor.getData());
