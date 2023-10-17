@@ -13,11 +13,11 @@ public class FloorCeilBSTImpl extends BSTImpl<Integer> implements FloorCeilBST {
 	@Override
 	public Integer floor(Integer[] array, double numero) {
 		Integer floor = null;
-		if (array.length > 0 && array != null) {
-			for (Integer num : array) {
-				insert(num);
+		if (array != null && array.length > 0) {
+			for (Integer valor : array) {
+				this.insert(valor);
 			}
-			floor = floor(getRoot(), numero, null);
+			floor = this.floor(this.root, numero, null);
 		}
 		return floor;
 	}
@@ -25,9 +25,9 @@ public class FloorCeilBSTImpl extends BSTImpl<Integer> implements FloorCeilBST {
 	private Integer floor(BSTNode<Integer> node, double numero, Integer floor) {
 		if (!node.isEmpty()) {
 			if (numero < node.getData()) {
-				floor = floor((BSTNode<Integer>) node.getLeft(), numero, floor);
+				floor = this.floor((BSTNode<Integer>) node.getLeft(), numero, floor);
 			} else if (numero > node.getData()) {
-				floor = floor((BSTNode<Integer>) node.getRight(), numero, floor);
+				floor = this.floor((BSTNode<Integer>) node.getRight(), numero, node.getData());
 			} else {
 				floor = node.getData();
 			}
@@ -38,11 +38,11 @@ public class FloorCeilBSTImpl extends BSTImpl<Integer> implements FloorCeilBST {
 	@Override
 	public Integer ceil(Integer[] array, double numero) {
 		Integer ceil = null;
-		if (array.length >0 && array != null) {
-			for (Integer num : array) {
-				insert(num);
+		if (array != null && array.length > 0) {
+			for (Integer valor : array) {
+				this.insert(valor);
 			}
-			ceil = ceil(getRoot(), numero, null);
+			ceil = this.ceil(this.root, numero, null);
 		}
 		return ceil;
 	}
@@ -50,9 +50,9 @@ public class FloorCeilBSTImpl extends BSTImpl<Integer> implements FloorCeilBST {
 	private Integer ceil(BSTNode<Integer> node, double numero, Integer ceil) {
 		if (!node.isEmpty()) {
 			if (numero < node.getData()) {
-				ceil = ceil((BSTNode<Integer>) node.getLeft(), numero, node.getData());
-			} else if (numero < node.getData()) {
-				ceil = ceil((BSTNode<Integer>) node.getRight(), numero, ceil);
+				ceil = this.ceil((BSTNode<Integer>) node.getLeft(), numero, node.getData());
+			} else if (numero > node.getData()) {
+				ceil = this.ceil((BSTNode<Integer>) node.getRight(), numero, ceil);
 			} else {
 				ceil = node.getData();
 			}
