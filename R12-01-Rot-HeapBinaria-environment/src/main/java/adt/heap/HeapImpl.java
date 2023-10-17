@@ -84,7 +84,7 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 	 * para subir os elementos na heap.
 	 */
 	private void heapify(int position) {
-		if (position >= 0 && position < size()) {
+		if (position >= 0 && position <= size()) {
 			int largest = position;
 			int left = left(position);
 			int right = right(position);
@@ -137,11 +137,10 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 
 	@Override
 	public T extractRootElement() {
-		T rootElementExtracted = null;
+		T rootElementExtracted = rootElement();
 		if (!isEmpty()) {
-			rootElementExtracted = rootElement();
-			heap[0] = heap[index];		///////////////////////////////////////////// seria index--?
-			index--;					////////////////////////////////////////////
+			heap[0] = heap[index];
+			index--;
 			heapify(0);
 		}
 		return rootElementExtracted;
@@ -149,21 +148,28 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 
 	@Override
 	public T rootElement() {
-		T rootElement = null;
+		T root = null;
 		if (!isEmpty()) {
-			rootElement = this.heap[0];
+			root = this.heap[0];
 		}
-		return rootElement;
+		return root;
 	}
 
 	@Override
 	public T[] heapsort(T[] array) {
 		if (array != null && array.length >= 2) {
 			buildHeap(array);
-			for (int i = array.length; i >= 1; i--) {
+			for (int i = array.length - 1; i >= 0; i--) {
 				Util.swap(array, 0, i);
 				this.index--;
 				heapify(0);
+			}
+
+			if (this.heap[0].compareTo(this.heap[1]) > 0) {
+				int j = array.length - 1;
+				for (int i = 0; i < j; i++) {
+					Util.swap(array, i, j--);
+				}
 			}
 		}
 		return array;
