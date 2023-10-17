@@ -109,32 +109,64 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 			heap = Arrays.copyOf(heap, heap.length + INCREASING_FACTOR);
 		}
 		// /////////////////////////////////////////////////////////////////
-		// TODO Implemente a insercao na heap aqui.
-		throw new UnsupportedOperationException("Not implemented yet!");
+		insert(heap, element);
+	}
+
+	private void insert(T[] array, T element) {
+		if (element != null) {
+			int i = ++this.index;
+			while (i > 0 && comparator.compare(array[parent(i)], element) < 0) {
+				array[i] = array[parent(i)];
+				i = parent(i);
+			}
+			array[i] = element;
+		}
 	}
 
 	@Override
 	public void buildHeap(T[] array) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (array != null) {
+			this.index = array.length - 1;
+			this.heap = array;
+
+			for (int i = (index / 2); i >= 0; i--) {
+				heapify(i);
+			}
+		}
 	}
 
 	@Override
 	public T extractRootElement() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T rootElementExtracted = null;
+		if (!isEmpty()) {
+			rootElementExtracted = rootElement();
+			heap[0] = heap[index];		///////////////////////////////////////////// seria index--?
+			index--;					////////////////////////////////////////////
+			heapify(0);
+		}
+		return rootElementExtracted;
 	}
 
 	@Override
 	public T rootElement() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T rootElement = null;
+		if (!isEmpty()) {
+			rootElement = this.heap[0];
+		}
+		return rootElement;
 	}
 
 	@Override
 	public T[] heapsort(T[] array) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (array != null && array.length >= 2) {
+			buildHeap(array);
+			for (int i = array.length; i >= 1; i--) {
+				Util.swap(array, 0, i);
+				this.index--;
+				heapify(0);
+			}
+		}
+		return array;
 	}
 
 	@Override
