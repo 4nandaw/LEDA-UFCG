@@ -63,8 +63,9 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			node.setData(element);
 			node.setLeft(new BTNode<T>());
 			node.setRight(new BTNode<T>());
+		} else if (node.getData().compareTo(element) > 0) {
+			
 		}
-		
 	}
 
 	@Override

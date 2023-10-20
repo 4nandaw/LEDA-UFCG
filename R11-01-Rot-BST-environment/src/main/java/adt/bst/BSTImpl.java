@@ -68,10 +68,12 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 			node.getLeft().setParent(node);
 			node.getRight().setParent(node);
-		} else if (element.compareTo(node.getData()) < 0) {
-			insert((BSTNode<T>) node.getLeft(), element);
 		} else {
-			insert((BSTNode<T>) node.getRight(), element);
+			if (node.getData().compareTo(element) > 0) {
+				insert((BSTNode<T>) node.getLeft(), element);
+			} else {
+				insert((BSTNode<T>) node.getRight(), element);
+			}
 		}
 
 	}
