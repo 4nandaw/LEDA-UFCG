@@ -61,10 +61,16 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	private void insert(BSTNode<T> node, T element) {
 		if (node.isEmpty()) {
 			node.setData(element);
-			node.setLeft(new BTNode<T>());
-			node.setRight(new BTNode<T>());
-		} else if (node.getData().compareTo(element) > 0) {
-			
+			node.setLeft(new BSTNode<T>());
+			node.setRight(new BSTNode<T>());
+			node.getLeft().setParent(node);
+			node.getRight().setParent(node);
+		} else {
+			if (node.getData().compareTo(element) > 0) {
+				insert((BSTNode<T>) node.getLeft(), element);
+			} else {
+				insert((BSTNode<T>) node.getRight(), element);
+			}
 		}
 	}
 
@@ -94,8 +100,55 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	@Override
 	public void remove(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		BSTNode<T> node = search(element);
+		remove(node);
+	}
+
+	private void remove(BSTNode<T> node) {
+		if (!isEmpty() && node != null) {
+			// Primeiro caso
+			if (node.isLeaf()) {
+				node.setData(null);
+
+			// Segundo caso	
+			} else if (node.getLeft().isEmpty() && !node.getRight().isEmpty() || !node.getLeft().isEmpty() && node.getRight().isEmpty()) {
+				if (node.getParent() != null) {
+					if (node.getParent().getData().compareTo(node.getData()) > 0) {
+						if (!node.getLeft().isEmpty()) {
+							node.getParent().setLeft(node.getLeft());
+							node.getLeft().setParent(node.getParent());
+						} else {
+							node.getParent().setLeft(node.getRight());
+							node.getRight().setParent(node.getParent());
+						}
+
+					} else {
+						if (!node.getLeft().isEmpty()) {
+							node.getParent().setRight(node.getLeft());
+							node.getLeft().setParent(node.getParent());
+						} else {
+							node.getParent().setRight(node.getRight());
+							node.getRight().setParent(node.getParent());
+						}
+					}
+
+				} else {
+					if (node.getLeft().isEmpty()) {
+						root = (BSTNode<T>) node.getRight();
+						root.setParent(null);
+					} else {
+						root = (BSTNode<T>) node.getLeft();
+						root.setParent(null);
+					}
+				}
+
+			// Terceiro caso
+			} else {
+				BSTNode<T> sucessor = sucessor(node.getData());
+				node.setData(sucessor.getData());
+				remove(sucessor);
+			}
+		}
 	}
 
 	@Override
