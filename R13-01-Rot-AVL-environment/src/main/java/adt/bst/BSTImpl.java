@@ -19,20 +19,45 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	@Override
 	public int height() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		return height(getRoot());
+	}
+
+	private int height(BSTNode<T> node) {
+		int height = -1;
+		if (!node.isEmpty()) {
+			height = 1 + Math.max(height((BSTNode<T>) node.getLeft()), height((BSTNode<T>) node.getRight()));
+		}
+		return height;
 	}
 
 	@Override
 	public BSTNode<T> search(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		return search(getRoot(), element);
+	}
+
+	private BSTNode<T> search(BSTNode<T> node, T element) {
+		BSTNode<T> search = new BSTNode<>();
+		if (element != null && !node.isEmpty()) {
+			if (node.getData().compareTo(element) > 0) {
+				search = search((BSTNode<T>) node.getLeft(), element);
+			} else if (node.getData().compareTo(element) < 0) {
+				search = search((BSTNode<T>) node.getRight(), element);
+			} else {
+				search = node;
+			}
+		}
+		return search;
 	}
 
 	@Override
 	public void insert(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (!isEmpty() && element != null) {
+			insert(root, element);
+		}
+	}
+
+	private void insert(BSTNode<T> root, T element) {
+		
 	}
 
 	@Override
