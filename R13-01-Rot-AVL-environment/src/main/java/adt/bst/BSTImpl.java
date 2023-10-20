@@ -1,5 +1,7 @@
 package adt.bst;
 
+import adt.bt.BTNode;
+
 public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	protected BSTNode<T> root;
@@ -51,12 +53,17 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	@Override
 	public void insert(T element) {
-		if (!isEmpty() && element != null) {
+		if (element != null && search(element).isEmpty()) {
 			insert(root, element);
 		}
 	}
 
-	private void insert(BSTNode<T> root, T element) {
+	private void insert(BSTNode<T> node, T element) {
+		if (node.isEmpty()) {
+			node.setData(element);
+			node.setLeft(new BTNode<T>());
+			node.setRight(new BTNode<T>());
+		}
 		
 	}
 
