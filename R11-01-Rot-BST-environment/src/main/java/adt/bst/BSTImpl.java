@@ -81,15 +81,15 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	public BSTNode<T> maximum() {
 		BSTNode<T> node = null;
 		if (!isEmpty()) {
-			node = findMaximum(this.root);
+			node = maximum(this.root);
 		}
 		return node;
 	}
 
-	private BSTNode<T> findMaximum(BSTNode<T> node) {
+	private BSTNode<T> maximum(BSTNode<T> node) {
 		BSTNode<T> auxiliar = node;
 		if (!node.getRight().isEmpty()) {
-			auxiliar = findMaximum((BSTNode<T>) node.getRight());
+			auxiliar = maximum((BSTNode<T>) node.getRight());
 		}
 		return auxiliar;
 	}
@@ -98,15 +98,15 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	public BSTNode<T> minimum() {
 		BSTNode<T> node = null;
 		if (!isEmpty()) {
-			node = findMinimum(this.root);
+			node = minimum(this.root);
 		}
 		return node;
 	}
 
-	private BSTNode<T> findMinimum(BSTNode<T> node) {
+	private BSTNode<T> minimum(BSTNode<T> node) {
 		BSTNode<T> auxiliar = node;
 		if (!node.getLeft().isEmpty()) {
-			 auxiliar = findMinimum((BSTNode<T>) node.getLeft());
+			 auxiliar = minimum((BSTNode<T>) node.getLeft());
 		}
 		return auxiliar;
 	}
@@ -118,18 +118,18 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 		if (!node.isEmpty()) {
 			if (!node.getRight().isEmpty())
-				sucessor = findMinimum((BSTNode<T>) node.getRight());
+				sucessor = minimum((BSTNode<T>) node.getRight());
 			else {
-				sucessor = findSucessor(node);
+				sucessor = sucessor(node);
 			}
 		}
 		return sucessor;
 	}
 
-	private BSTNode<T> findSucessor(BSTNode<T> node) {
+	private BSTNode<T> sucessor(BSTNode<T> node) {
 		BSTNode<T> sucessor = (BSTNode<T>) node.getParent();
 		if (node.getParent() != null && !sucessor.isEmpty() && node.equals(sucessor.getRight())) {
-			sucessor = findSucessor((BSTNode<T>) node.getParent());
+			sucessor = sucessor((BSTNode<T>) node.getParent());
 		}
 		return sucessor;
 	}
@@ -141,18 +141,18 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 		if (!node.isEmpty()) {
 			if (!node.getLeft().isEmpty())
-				predecessor = findMinimum((BSTNode<T>) node.getLeft());
+				predecessor = minimum((BSTNode<T>) node.getLeft());
 			else {
-				predecessor = findPredecessor(node);
+				predecessor = predecessor(node);
 			}
 		}
 		return predecessor;
 	}
 
-	private BSTNode<T> findPredecessor(BSTNode<T> node) {
+	private BSTNode<T> predecessor(BSTNode<T> node) {
 		BSTNode<T> predecessor = (BSTNode<T>) node.getParent();
 		if (node.getParent() != null && !predecessor.isEmpty() && node.equals(predecessor.getLeft())) {
-			predecessor = findPredecessor((BSTNode<T>) node.getParent());
+			predecessor = predecessor((BSTNode<T>) node.getParent());
 		}
 		return predecessor;
 	}
