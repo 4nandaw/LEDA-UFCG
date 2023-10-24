@@ -32,7 +32,7 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements
 		int result = 0;
 
 		if (!node.isEmpty()) {
-			result = height((BSTNode<T>) node.getLeft()) - height((BSTNode<T>) node.getRight());
+			result = this.height((BSTNode<T>) node.getLeft()) - this.height((BSTNode<T>) node.getRight());
 		}
 		return result;
 	}
@@ -104,7 +104,7 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements
 					node.setLeft(null);
 					node.setRight(null);
 					rebalanceUp(node);
-				
+
 				// Segundo caso
 				} else if (node.getRight().isEmpty() || node.getLeft().isEmpty()) { 
 					BSTNode<T> childNode = node.getRight().isEmpty() ? (BSTNode<T>) node.getLeft()
@@ -120,9 +120,9 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements
 							node.getParent().setRight(childNode);
 					}
 					rebalanceUp(node);
-				
+			
 				// Terceiro caso
-				} else { 
+				} else {
 					T sucessor = this.sucessor(node.getData()).getData();
 					this.remove(sucessor);
 					node.setData(sucessor);
